@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 20:43:19 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 11:21:41 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:59:29 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ int	*init_a(int ac, char **av)
 	while (i < ac)
 	{
 		tmp[i] = ft_atoi(av[i + 1]);
-		printf("%d ", tmp[i]);
 		i++;
 	}
-	printf("\n");
 	return (tmp);
 }

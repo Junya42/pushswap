@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 01:50:59 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 03:35:59 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:58:14 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,16 +302,12 @@ void	start_b(t_stack *a, t_stack *b, int *cpy)
 	int	median;
 
 	median = getMiddle(cpy, a->range, 0);
-	printf("median = %d\n", median);
 	high = hightestValue(a);
 	while (a->summit != 0)
 	{
 		if (a->summit > 0)
 			if (ascending_check(a))
-			{
-				printf("ascending_check return\n");
 				return ;
-			}
 		if (b->summit > 0)
 			if (!break_start(b, median))
 				if (a->lst->value == high && b->lst->value <= median)
