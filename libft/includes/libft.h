@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 00:34:47 by anremiki          #+#    #+#             */
-/*   Updated: 2021/10/26 05:00:10 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 03:45:46 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,13 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lstm, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lstm, void *(*f)(void *), void (*del)(void *));
+
+
+typedef	struct	s_array
+{
+	struct s_array	*next;
+	struct s_array	*prev;
+	int		value;
+}			t_array;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 07:05:15 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 11:06:30 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 03:49:35 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_lstfree(t_link *lst, int ac, char **av)
 	{
 		if (elem->a->array)
 			free(elem->a->array);
+		lstclear(elem->a->lst, elem->a->summit);
 		free(elem->a);
 	}
 	if (elem->b)

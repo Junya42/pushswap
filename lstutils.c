@@ -6,7 +6,7 @@
 /*   By: anremiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 10:19:09 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 23:15:27 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 03:54:12 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	lst_remove_if(t_array **lst)
 	previous->next = ptr;
 	ptr->prev = previous;
 	free(current);
-	previous = previous->next;
-	previous = ptr->prev;
+	/*previous = previous->next;
+	previous = ptr->prev;*/	//Valgrind invalid read, check if it still works
 	*lst = ptr;
 }
 

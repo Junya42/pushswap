@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 21:02:31 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 02:40:52 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 03:49:14 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@
  *	border represents the previous chunk borders
  *	array stores our numbers waiting to get sorted	*/
 
-typedef	struct	s_array
-{
-	struct s_array	*next;
-	struct s_array	*prev;
-	int		value;
-}			t_array;
 
 typedef struct	s_stack
 {
@@ -85,6 +79,7 @@ int		free_a(t_stack *a);
 int		free_ab(t_stack *a, t_stack *b);
 int		free_abc(t_stack *a, t_stack *b, int *tmp);
 int		free_all(int *cpy, int *tmp, t_stack *a, t_stack *b);
+void	lstclear(t_array *lst, int summit);
 
 /*	Pushswap commands 	*/
 void	pa(t_stack *a, t_stack *b, char *str);
