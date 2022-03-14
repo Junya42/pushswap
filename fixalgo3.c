@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 01:50:59 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 09:49:16 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 03:35:59 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,45 @@ int	*createSort(t_stack *a, int index, int j, int tmp)
 	return (cpy);
 }
 
-int	hightestValue(t_stack *b)
+int	hightestIndex(t_stack *n)
 {
 	int	i;
 	int	j;
 	int	ret;
+	t_array	*ptr;
 
-	i = b->array[b->summit];
-	j = b->summit;
-	while (j--)
+	ptr = n->lst;
+	i = ptr->value;
+	j = 0;
+	while (j <= n->summit)
 	{
-		if (b->array[j] >= i)
+		if (ptr->value >= i)
 		{
-			i = b->array[j];
+			i = ptr->value;
 			ret = j;
 		}
+		ptr = ptr->next;
+		j++;
 	}
 	return (ret);
+}
+
+int	hightestValue(t_stack *n)
+{
+	t_array	*ptr;
+	int		tmp;
+
+	ptr = n->lst;
+	tmp = ptr->value;
+	while (ptr->next)
+	{
+		if (ptr->value >= tmp)
+			tmp = ptr->value; 
+		if (ptr->next == n->lst)
+			break ;
+		ptr = ptr->next;
+	}
+	return (tmp);
 }
 
 int	getMiddle(int *cpy, int len, int lastMiddle)
@@ -64,55 +86,120 @@ int	getMiddle(int *cpy, int len, int lastMiddle)
 	return  (cpy[lastMiddle]);
 }
 
-int	lowestValue(t_stack *a, int b)
+int	lowestIndex(t_stack *a, int b)
 {
-	int	i;
-	int	x;
+	int		i;
+	int		x;
+	int		tmp;
+	t_array	*ptr;
 
 	i = -1;
+	ptr = a->lst;
+	x = hightestValue(a);
+	tmp = x;
+	//printf("int = %d\n", b);
+	//printf("hightest value = %d\n", x);
+	while (++i <= a->summit)
+	{
+		//printf("ptr->value = %d\n", ptr->value);
+		if (ptr->value <= x && ptr->value <= tmp && ptr->value > b)
+		{
+			tmp = ptr->value;
+			//printf("x = %d > %d found his target at array[%d] = %d\n", x, b, i, ptr->value);
+			x = i;
+		}
+		else if (ptr->value < tmp && ptr->value > b)
+		{
+			tmp = ptr->value;
+			//printf("x = %d > %d found a new target at array[%d] = %d\n", x, b, i, ptr->value);
+			x = i;
+		}
+		ptr = ptr->next;
+	}
+	//printf("\n");
+	return (x);
+}
+
+int	lowestValue(t_stack *a, int b)
+{
+	int		i;
+	int		x;
+	t_array	*ptr;
+
+	i = -1;
+	ptr = a->lst;
 	x = hightestValue(a);
 	while (++i <= a->summit)
-		if (a->array[i] < a->array[x] && a->array[i] > b)
-			x = i;
+	{
+		if (ptr->value < x && ptr->value > b)
+			x = ptr->value;
+		ptr = ptr->next;
+	}
 	return (x);
 }
 
 int	count_moves(t_stack *a, t_stack *b, int i, int low)
 {
-	if (low < a->summit / 2 && i < b->summit / 2)
-		return (low + 1 + i + 1);
-	if (low < a->summit / 2 && i >= b->summit / 2)
-		return (low + 1 + b->summit - i);
-	if (low >= a->summit && i < b->summit / 2)
-		return (a->summit - low + i + 1);
-	return (a->summit - low + b->summit - i);
+	//printf("low = %d\n", low);
+	//printf("---a->summit = %d\n", a->summit);
+	//printf("------i = %d\n", i);
+	//printf("---------b->summit = %d\n", b->summit);
+	if (low > a->summit)
+		return (501);
+	if (low <= a->summit / 2 && i <= b->summit / 2)
+		return (low + i);
+	if (low <= a->summit / 2 && i > b->summit / 2)
+		return (low + b->summit - i + 1);
+	if (low > a->summit / 2 && i <= b->summit / 2)
+		return ((a->summit - low) + 1 + i);
+	return (a->summit - low + b->summit - i + 2);
+}
+
+int		get_alpha_value(t_stack *a, int n)
+{
+	t_array	*ptr;
+	int		index;
+
+	ptr = a->lst;
+	index = -1;
+	while (++index != n)
+		ptr = ptr->next;
+	return (ptr->value);
 }
 
 void	best_moves(t_stack *a, t_stack *b)
 {
-	int	i;
-	int	low;
-	int	tmp;
-	int	best;
+	int		i;
+	int		low;
+	int		tmp;
+	int		best;
+	t_array	*ptr;
 
-	i = b->summit;
+	ptr = b->lst;
+	i = -1;
 	//printf("b summit = %d\n", b->summit);
 	best = 500;
-	while(i > -1)
+	while(++i <= b->summit)
 	{
-		low = lowestValue(a, b->array[i]);
+		low = lowestIndex(a, ptr->value);
 		tmp = count_moves(a, b, i, low);
+		//printf("------count_moves = %d\n\n", tmp);
 		if (tmp <= best)
 		{
+			//printf("tmp <= best : %d <= %d\n", tmp, best);
 			best = tmp;
 			a->border = low;
-			//printf("low = %d -> a->array[low] = %d\n", low ,a->array[low]);
-			//printf("nombre de coup = %d\n", tmp);
-			//printf("a->array[%d] = %d\n", low, a->array[low]);
-			//printf("---> b->array[%d] = %d\n", i, b->array[i]);
+			a->value = get_alpha_value(a, low);
+			//printf("a->value = %d\n", a->value);
+			/*printf("low = %d -> a->array[low] = %d\n", low , lowestValue(a, ptr->value));
+			printf("nombre de coup = %d\n", tmp);
+			printf("a->array[%d] = %d\n", low, lowestValue(a, ptr->value));
+			printf("---> b->array[%d] = %d\n", i, ptr->value);*/
 			b->border = i;
+			b->value = ptr->value;
+			//printf("b->value = %d\n\n", b->value);
 		}
-		i--;
+		ptr = ptr->next;
 	}
 }
 
@@ -121,40 +208,44 @@ void	move_a(t_stack *a, t_stack *b)
 	int	alpha;
 
 	alpha = b->count;
-	while (a->array[a->summit] != alpha)
+	while (a->lst->value != alpha)
 	{
-		if (a->border >= a->summit / 2)
-			ra(a, b, "ra\n");
-		else
+		if (a->border > a->summit / 2)
 			rra(a, b, "rra\n");
+		else
+			ra(a, b, "ra\n");
 	}
 }
 
 void	move_b(t_stack *a, t_stack *b)
 {
-	int	beta = b->array[b->border];
-	int alpha = a->array[a->border];
+	int	beta = b->value;
+	int alpha = a->value;
 
 	b->count = alpha;
-	while (b->array[b->summit] != beta)
+	//printf("B = current value of *blst = %d >>> target is = %d\n", b->lst->value, beta);
+	//printf("A = current value of *alst = %d >>> target is = %d\n", a->lst->value, alpha);
+	//printf("a->border = %d\n", a->border);
+	//printf("b->border = %d\n", b->border);
+	while (b->lst->value != beta)
 	{
-		if (a->array[a->summit] != alpha)
+		if (a->lst->value != alpha)
 		{
-			if (a->border < a->summit / 2 && b->border < b->summit / 2)
-				rrr(a, b, "rrr\n");
-			else if (b->border < b->summit / 2)
-				rrb(a, b, "rrb\n");
-			else if (a->border >= a->summit / 2 && b->border >= b->summit / 2)
+			if (a->border <= a->summit / 2 && b->border <= b->summit / 2)
 				rr(a, b, "rr\n");
+			else if (b->border <= b->summit / 2)
+				rb(a, b, "rb\n");
+			else if (a->border > a->summit / 2 && b->border > b->summit / 2)
+				rrr(a, b, "rrr\n");
 			else
-				rb(a, b, "rb\n");	
+				rrb(a, b, "rrb\n");	
 		}
 		else
 		{
 			if (b->border < b->summit / 2)
-				rrb(a, b, "rrb\n");
-			else
 				rb(a, b, "rb\n");
+			else
+				rrb(a, b, "rrb\n");
 		}
 	}
 }
@@ -162,19 +253,24 @@ void	move_b(t_stack *a, t_stack *b)
 void	init_moves(t_stack *a, t_stack *b)
 {
 	move_b(a, b);
+	//print_stack(a, b, "move b");
 	move_a(a, b);
 	pa(a, b, "pa\n");
 }
 
 int	break_start(t_stack *b, int median)
 {
-	int	i;
+	t_array	*ptr;
+	int		i;
 
+	ptr = b->lst;
 	i = b->summit;
+	ptr = ptr->prev;
 	while (i > -1)
 	{
-		if (b->array[i] > median)
+		if (ptr->value > median)
 			return (0);
+		ptr = ptr->prev;
 		i--;
 	}
 	return (1);
@@ -182,14 +278,20 @@ int	break_start(t_stack *b, int median)
 
 int	ascending_check(t_stack *a)	
 {
-	int	i;
+	t_array	*ptr;
+	t_array	*nptr;
+	int		i;
 
-	i = a->summit - 1;
-	while (i > -1)
+	ptr = a->lst;
+	i = -1;
+	while (++i <= a->summit)
 	{
-		if (a->array[i + 1] > a->array[i])
+		nptr = ptr->next;
+		if (ptr->value > nptr->value)
 			return (0);
-		i--;
+		if (ptr->next == a->lst)
+			break ;
+		ptr = ptr->next;
 	}
 	return (1);
 }
@@ -200,20 +302,25 @@ void	start_b(t_stack *a, t_stack *b, int *cpy)
 	int	median;
 
 	median = getMiddle(cpy, a->range, 0);
-	high = a->array[hightestValue(a)];
+	printf("median = %d\n", median);
+	high = hightestValue(a);
 	while (a->summit != 0)
 	{
 		if (a->summit > 0)
 			if (ascending_check(a))
+			{
+				printf("ascending_check return\n");
 				return ;
-		if (!break_start(b, median))
-			if (a->array[a->summit] == high && b->array[b->summit] <= median)
-				rr(a, b, "rr\n");
-		if (a->array[a->summit] == high)
+			}
+		if (b->summit > 0)
+			if (!break_start(b, median))
+				if (a->lst->value == high && b->lst->value <= median)
+					rr(a, b, "rr\n");
+		if (a->lst->value == high)
 			ra(a, b, "ra\n");
 		pb(a, b, "pb\n");
 		if (!break_start(b, median))
-			if (b->array[b->summit] <= median)
+			if (b->lst->value <= median)
 				rb(a, b, "rb\n");
 	}
 	pa(a, b, "pa\n");
@@ -221,26 +328,33 @@ void	start_b(t_stack *a, t_stack *b, int *cpy)
 
 void	algo(t_stack *a, t_stack *b, int *cpy)
 {
-	int	rotate;
-	int	highvalue;
+	int		rotate;
+	int		highvalue;
+	t_array	*alst;
 
-	start_b(a, b, cpy);
 	//print_stack(a , b, "hello");
+	start_b(a, b, cpy);
+//	print_stack(a , b, "start_b");
 	while (b->summit > -1)
 	{
 		best_moves(a, b);
 		init_moves(a, b);
-		//print_stack(a, b, "clear b");
+	//	print_stack(a , b, "init moves");
 	}
-	rotate = hightestValue(a);
 	//print_stack(a, b, "moves");
-	highvalue = a->array[hightestValue(a)];
-	while (a->array[a->summit] != highvalue)
+	highvalue = hightestValue(a);
+	rotate = hightestIndex(a);
+	alst = lst_last(a->lst);
+	//printf("alst value = %d >>> highvalue = %d\n", alst->value, highvalue);
+	//printf("rotate = %d >>> a->summit / 2 = %d\n", rotate, a->summit / 2);
+	//print_stack(a, b, "before final");
+	while (alst->value != highvalue)
 	{
 		if (rotate < a->summit / 2)
-			rra(a, b, "rra\n");
-		else
 			ra(a, b, "ra\n");
+		else
+			rra(a, b, "rra\n");
+		alst = lst_last(a->lst);
 	}
 //	print_stack(a, b, "final rotate");
 }

@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 00:53:49 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 10:14:24 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/13 23:15:02 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,38 @@
 
 void	pa(t_stack *a, t_stack *b, char *str)
 {
+	t_array	*alpha;
+	t_array	*beta;
+
 	if (b->summit < 0)
 		return ;
-	a->array[++a->summit] = b->array[b->summit--];
-	a->count++;
 	ft_putstr(str);
-//	return (print_stack(a, b, "Push Alpha"));
+	alpha = a->lst;
+	beta = b->lst;
+	lstadd_new(&alpha, beta->value);
+	a->lst = alpha;
+	lst_remove_if(&beta);
+	b->lst = beta;
+	a->summit++;
+	b->summit--;
+	a->count++;
 }
 
 void	pb(t_stack *a, t_stack *b, char *str)
 {
+	t_array	*alpha;
+	t_array	*beta;
+
 	if (a->summit < 0)
 		return ;
-	b->array[++b->summit] = a->array[a->summit--];
-	a->count++;
 	ft_putstr(str);
-//	return (print_stack(a, b, "Push Beta"));
+	alpha = a->lst;
+	beta = b->lst;
+	lstadd_new(&beta, alpha->value);
+	b->lst = beta;
+	lst_remove_if(&alpha);
+	a->lst = alpha;
+	b->summit++;
+	a->summit--;
+	a->count++;
 }

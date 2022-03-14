@@ -6,11 +6,26 @@
 /*   By: anremiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 10:19:09 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 11:21:14 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/13 23:15:27 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+
+t_array	*lst_last(t_array *lst)
+{
+	t_array	*ptr;
+	
+	ptr = lst;
+	while (ptr)
+	{
+		if (ptr->next == lst)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (ptr);
+}
 
 void	lst_remove_if(t_array **lst)
 {
@@ -18,24 +33,38 @@ void	lst_remove_if(t_array **lst)
 	t_array *current;
 	t_array *ptr;
 
-	previous = *lst;
-	current = previous->next;
-	ptr = previous->prev;
-	current->prev = ptr;
-	ptr->next = current;
-	*lst = current;
-	free(previous);
+	previous = lst_last(*lst);
+	current = *lst;
+	ptr = current->next;
+	previous->next = ptr;
+	ptr->prev = previous;
+	free(current);
+	previous = previous->next;
+	previous = ptr->prev;
+	*lst = ptr;
 }
 
 void	lstadd_front(t_array **lst, t_array *new)
 {
+	t_array *ptr;
+	t_array	*head;
+
+	head = *lst;
+	ptr = lst_last(*lst);
 	if (*lst)
 	{
 		new->next = *lst;
+		new->prev = ptr;
+		ptr->next = new;
+		head->prev = new;
 		*lst = new;
 	}
 	else
+	{
+		new->next = new;
+		new->prev = new;
 		*lst = new;
+	}
 }
 
 t_array	*lst_new(int value)
@@ -46,27 +75,9 @@ t_array	*lst_new(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
-	new->next = 0;
-	new->prev = 0;
+	new->next = NULL;
+	new->prev = NULL;
 	return (new);
-}
-
-void	lst_circular(t_array **lst)
-{
-	t_array	*start;
-	t_array	*ptr;
-	t_array	*prev;
-
-	start = *lst;
-	ptr = start;
-	while (ptr->next)
-	{
-		prev = ptr;
-		ptr = ptr->next;
-		ptr->prev = prev;
-	}
-	ptr->next = start;
-	start->prev = ptr;
 }
 
 void	lstadd_new(t_array **lst, int value)
@@ -75,5 +86,4 @@ void	lstadd_new(t_array **lst, int value)
 
 	new = lst_new(value);
 	lstadd_front(lst, new);
-	//lst_circular(lst);
 }

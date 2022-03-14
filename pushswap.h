@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 21:02:31 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/13 11:06:55 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/14 02:40:52 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 
 typedef	struct	s_array
 {
-	void	*next;
-	void	*prev;
+	struct s_array	*next;
+	struct s_array	*prev;
 	int		value;
 }			t_array;
 
@@ -42,6 +42,7 @@ typedef struct	s_stack
 	int			range;
 	int			count;
 	int			border;
+	int			value;
 	t_array		*lst;
 	int			*array;
 }				t_stack;
@@ -57,6 +58,7 @@ typedef	struct	s_link
 /*	Lst functions	*/
 void	lstadd_new(t_array **lst, int value);
 void	lst_remove_if(t_array **lst);
+t_array	*lst_last(t_array *lst);
 
 /*	Random array generator	used for testing	*/
 int		*randomgen(int a);
