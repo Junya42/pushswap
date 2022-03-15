@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 21:02:31 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 03:49:14 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/15 07:23:17 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ void	purplestr(int bg, char *str);
 void	bluestr(int bg, char *str);
 void	yellowstr(int bg, char *str);
 
+/*	Algo functions	*/
+int		*createSort(t_stack *a, int index, int j, int tmp);
+int		hightestIndex(t_stack *n);
+int		hightestValue(t_stack *n);
+int		lowestIndex(t_stack *a, int b);
+int		lowestValue(t_stack *a, int b);
+int		get_alpha_value(t_stack *a, int n);
+int		count_moves(t_stack *a, t_stack *b, int i, int low);
+void	best_moves(t_stack *a, t_stack *b);
+void	move_a(t_stack *a, t_stack *b);
+void	move_b(t_stack *a, t_stack *b);
+void	init_moves(t_stack *a, t_stack *b);
 /*	Functions to initialize and print our stacks	*/
 void	fill_stack(t_stack *a, t_stack *b, int *filler, char **av);
 t_stack	*init_s(int ac);

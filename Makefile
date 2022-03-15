@@ -6,7 +6,7 @@
 #    By: anremiki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 23:53:14 by anremiki          #+#    #+#              #
-#    Updated: 2022/03/13 11:12:43 by anremiki         ###   ########.fr        #
+#    Updated: 2022/03/15 07:22:31 by anremiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS =	main.c	\
 		utils.c	\
 		utils2.c	\
 		colors.c	\
-		fixalgo3.c	\
+		algo.c	\
+		algo_utils.c	\
+		algo_moves.c	\
 
 OBJS = ${SRCS:.c=.o}
 
