@@ -6,11 +6,11 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 01:50:33 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 03:48:54 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/22 22:45:24 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../pushswap.h"
+#include "../../includes/pushswap.h"
 #include "libft.h"
 
 void	lstclear(t_array *lst, int summit)

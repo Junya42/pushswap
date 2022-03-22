@@ -6,25 +6,27 @@
 #    By: anremiki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 23:53:14 by anremiki          #+#    #+#              #
-#    Updated: 2022/03/15 07:22:31 by anremiki         ###   ########.fr        #
+#    Updated: 2022/03/22 21:02:43 by anremiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.c	\
-		lstutils.c	\
-		free.c	\
-		lst.c	\
-		miniprintf.c	\
-		push.c	\
-		revrotate.c	\
-		rotate.c	\
-		swap.c	\
-		utils.c	\
-		utils2.c	\
-		colors.c	\
-		algo.c	\
-		algo_utils.c	\
-		algo_moves.c	\
+SRCS =	srcs/main.c	\
+		srcs/lstutils.c	\
+		srcs/free.c	\
+		srcs/lst.c	\
+		srcs/miniprintf.c	\
+		srcs/push.c	\
+		srcs/revrotate.c	\
+		srcs/rotate.c	\
+		srcs/swap.c	\
+		srcs/utils.c	\
+		srcs/utils2.c	\
+		srcs/colors.c	\
+		srcs/algo.c	\
+		srcs/algo_utils.c	\
+		srcs/algo_moves.c	\
+		srcs/algo_three.c	\
+		srcs/algo_five.c	\
 
 OBJS = ${SRCS:.c=.o}
 

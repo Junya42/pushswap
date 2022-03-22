@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 00:34:47 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 18:35:01 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:18:40 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <limits.h>
 
-typedef struct 		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -79,12 +79,11 @@ void	ft_lstclear(t_list **lstm, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lstm, void *(*f)(void *), void (*del)(void *));
 
-
-typedef	struct	s_array
+typedef struct s_array
 {
 	struct s_array	*next;
 	struct s_array	*prev;
-	int		value;
+	int				value;
 }			t_array;
 
 #endif

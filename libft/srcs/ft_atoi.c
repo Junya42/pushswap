@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 01:24:23 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/14 18:34:44 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:19:29 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atoi(const char *nptr)
 {
-	int			sign;
-	long res;
+	int		sign;
+	long	res;
 
 	res = 0;
 	sign = 1;

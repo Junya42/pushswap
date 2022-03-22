@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   miniprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 05:35:34 by anremiki          #+#    #+#             */
-/*   Updated: 2021/10/17 05:36:14 by anremiki         ###   ########.fr       */
+/*   Created: 2021/10/26 06:20:07 by anremiki          #+#    #+#             */
+/*   Updated: 2022/03/22 20:39:21 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/pushswap.h"
 
-int main(void)
+void	colornbr(unsigned char *str, int nb)
 {
-	ft_printf("Hello %d, comment ca va %s", 42, "Anis");
+	while (*str && *str != '%')
+		write(1, str++, 1);
+	str++;
+	bluenbr(nb);
+	while (*str)
+		write(1, str++, 1);
+}
+
+void	classicnbr(unsigned char *str, int nb)
+{
+	while (*str && *str != '%')
+		write(1, str++, 1);
+	str++;
+	ft_putnbr(nb);
+	while (*str)
+		write(1, str++, 1);
 }
