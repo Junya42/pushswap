@@ -6,7 +6,7 @@
 #    By: anremiki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 23:53:14 by anremiki          #+#    #+#              #
-#    Updated: 2022/03/23 01:43:08 by anremiki         ###   ########.fr        #
+#    Updated: 2022/03/23 02:10:13 by anremiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ NAME = push_swap
 
 NAMEBONUS = checker
 
-.c.o:
+.c.o: 
 	${CC} -I includes ${CFLAGS} -g3 -D BUFFER_SIZE=1 -c $< -o ${<:.c=.o}
 
 all: $(NAME)

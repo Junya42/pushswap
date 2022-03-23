@@ -6,7 +6,7 @@
 #    By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/24 15:36:33 by anremiki          #+#    #+#              #
-#    Updated: 2022/03/23 01:01:04 by anremiki         ###   ########.fr        #
+#    Updated: 2022/03/23 02:13:12 by anremiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
-bonus:			$(OBONUS)
+bonus:			$(NAME) $(OBONUS)
 				ar rcs $(NAME) $(OBONUS)
 clean:
 				$(RM) $(OBJS) $(OBONUS)
