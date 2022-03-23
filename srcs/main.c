@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:53:12 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/23 01:38:35 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/23 01:57:38 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	ft_parse_av(int ac, char **av, int i, long j)
 
 void	choose_algo(t_link *link, int ac)
 {
-	printf("ac == %d\n", ac);
 	if (ac == 2)
 		sa(link->a, link->b, "sa\n");
 	else if (ac == 3)
@@ -111,6 +110,6 @@ int	main(int ac, char **av)
 		link = ft_l(ac - 1, av, init_s, init_a);
 	}
 	choose_algo(link, ac_size);
-	print_stack(link->a, link->b, "end");
+//	print_stack(link->a, link->b, "end");
 	return (ft_lstfree(link, ac_size, av_split));
 }
