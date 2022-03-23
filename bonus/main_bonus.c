@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:53:12 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/22 23:39:28 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/23 01:36:22 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
-
-int	check_sort(int ac, char **av)
-{
-	int	ptr;
-	int	current;
-	int	limit;
-
-	limit = -1;
-	if (av[0][0] == '.')
-		limit = 0;
-	while (--ac > 0)
-	{
-		current = ft_atoi(av[ac]);
-		ptr = ac;
-		while (--ptr > limit)
-			if (current < ft_atoi(av[ptr]))
-				return (0);
-	}
-	return (1);
-}
 
 int	check_cmp(char *str, char c)
 {
@@ -51,6 +31,8 @@ int	ft_parse_av(int ac, char **av, int i, long j)
 	while (av[++i])
 	{
 		j = -1;
+		if (!av[i][0])
+			return (write(2, "Error\n", 6));
 		while (av[i][++j])
 		{
 			if (!check_cmp("+-0123456789", av[i][0]))
@@ -70,20 +52,7 @@ int	ft_parse_av(int ac, char **av, int i, long j)
 		if (j < INT_MIN || j > INT_MAX)
 			return (write(2, "Error\n", 6));
 	}
-	return (check_sort(ac, av));
-}
-
-void	choose_algo(t_link *link, int ac)
-{
-	printf("ac == %d\n", ac);
-	if (ac == 2)
-		sa(link->a, link->b, "sa\n");
-	else if (ac == 3)
-		algo_three(link->a, link->b);
-	else if (ac == 5)
-		algo_five(link->a, link->b);
-	else
-		algo(link->a, link->b, link->clone);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -110,6 +79,6 @@ int	main(int ac, char **av)
 			return (1);
 		link = ft_l(ac - 1, av, init_s, init_a);
 	}
-	choose_algo(link, ac_size);
+	wait_input(link->a, link->b);
 	return (ft_lstfree(link, ac_size, av_split));
 }

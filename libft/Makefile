@@ -6,7 +6,7 @@
 #    By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/24 15:36:33 by anremiki          #+#    #+#              #
-#    Updated: 2021/10/24 03:47:36 by anremiki         ###   ########.fr        #
+#    Updated: 2022/03/23 01:01:04 by anremiki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS			=	./srcs/ft_isalnum.c ./srcs/ft_isprint.c ./srcs/ft_memcmp.c \
 					./srcs/ft_strrchr.c ./srcs/ft_toupper.c ./srcs/ft_calloc.c \
 					./srcs/ft_isdigit.c ./srcs/ft_memchr.c  ./srcs/ft_memset.c  \
 					./srcs/ft_putstr_fd.c  ./srcs/ft_strjoin.c ./srcs/ft_strmapi.c \
-					./srcs/ft_strtrim.c ./srcs/ft_putstr.c ./srcs/ft_putnbr.c
+					./srcs/ft_strtrim.c ./srcs/ft_putstr.c ./srcs/ft_putnbr.c	\
+					./srcs/ft_strcmp.c
 
 SRCSB			=	./srcs/ft_lstnew.c ./srcs/ft_lstadd_front.c ./srcs/ft_lstsize.c \
 					./srcs/ft_lstlast.c ./srcs/ft_lstadd_back.c ./srcs/ft_lstdelone.c \

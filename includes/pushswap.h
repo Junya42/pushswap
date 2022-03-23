@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 21:02:31 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/22 23:32:16 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/23 01:18:11 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,10 @@ void	algo_five(t_stack *a, t_stack *b);
 int		check_low(t_stack *a);
 int		check_high(t_stack *a);
 
+/*	Checker	*/
+void	wait_input(t_stack *a, t_stack *b);
+char	*get_next_line(int fd);
+int		do_push(t_stack *a, t_stack *b, t_list *lst);
+int		check_input(t_stack *a, t_stack *b);
+void	print_result(int check, t_stack *a, t_stack *b);
 #endif
