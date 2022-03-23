@@ -6,7 +6,7 @@
 /*   By: anremiki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:57:13 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/23 01:18:33 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/23 02:20:02 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	do_swap(t_stack *a, t_stack *b, t_list *lst)
 		return (0);
 	return (1);
 }
+
 int	do_input(t_stack *a, t_stack *b, t_list *lst)
 {
 	int	checker;
@@ -98,4 +99,5 @@ void	wait_input(t_stack *a, t_stack *b)
 		free(checker);
 	}
 	print_result(do_input(a, b, lst), a, b);
+	ft_lstclear(&lst, free);
 }

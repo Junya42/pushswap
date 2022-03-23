@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:53:12 by anremiki          #+#    #+#             */
-/*   Updated: 2022/03/23 01:57:38 by anremiki         ###   ########.fr       */
+/*   Updated: 2022/03/23 02:20:12 by anremiki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int	main(int ac, char **av)
 		link = ft_l(ac - 1, av, init_s, init_a);
 	}
 	choose_algo(link, ac_size);
-//	print_stack(link->a, link->b, "end");
 	return (ft_lstfree(link, ac_size, av_split));
 }
